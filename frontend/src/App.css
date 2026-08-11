@@ -1,0 +1,330 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 4rem 1.5rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(47, 158, 143, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--ink-navy) 0%, var(--ink-navy-deep) 100%);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  animation: hero-rise 0.8s ease-out both;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--warm-white);
+  margin-top: 0.5rem;
+}
+
+.hero__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--mist-slate);
+  letter-spacing: 0.02em;
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Auth card ---------- */
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(237, 241, 245, 0.06);
+  border: 1px solid rgba(237, 241, 245, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: card-rise 0.8s 0.15s ease-out both;
+}
+
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-card__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  background: rgba(11, 22, 38, 0.5);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--mist-slate);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 9px;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.tab--active {
+  background: var(--signal-teal);
+  color: var(--ink-navy-deep);
+}
+
+/* ---------- Form ---------- */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field span {
+  font-size: 0.8rem;
+  color: var(--mist-slate);
+  font-weight: 500;
+}
+
+.field input,
+.field select {
+  font-family: var(--font-body);
+  background: rgba(11, 22, 38, 0.55);
+  border: 1px solid rgba(237, 241, 245, 0.14);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  color: var(--warm-white);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--signal-teal);
+  box-shadow: 0 0 0 3px rgba(47, 158, 143, 0.25);
+}
+
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--beacon-amber);
+  color: var(--ink-navy-deep);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(232, 163, 61, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Status messages ---------- */
+
+.status {
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 8px;
+  animation: status-in 0.25s ease-out both;
+}
+
+.status--error {
+  background: rgba(232, 111, 61, 0.12);
+  color: #E88F6F;
+}
+
+.status--success {
+  background: rgba(47, 158, 143, 0.12);
+  color: var(--signal-teal);
+}
+
+@keyframes status-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboard {
+  min-height: 100vh;
+  padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(47, 158, 143, 0.1), transparent 60%),
+    linear-gradient(180deg, var(--ink-navy) 0%, var(--ink-navy-deep) 100%);
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  animation: hero-rise 0.6s ease-out both;
+}
+
+.dashboard__title {
+  font-size: 1.6rem;
+  color: var(--warm-white);
+}
+
+.dashboard__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--mist-slate);
+  margin-top: 0.15rem;
+}
+
+.dashboard__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Incident list ---------- */
+
+.incident-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: card-rise 0.6s 0.1s ease-out both;
+}
+
+.incident-list__title {
+  font-size: 1.1rem;
+  color: var(--warm-white);
+  margin-bottom: 0.25rem;
+}
+
+.incident-list__empty {
+  font-size: 0.9rem;
+  color: var(--mist-slate);
+}
+
+.incident-card {
+  background: rgba(237, 241, 245, 0.05);
+  border: 1px solid rgba(237, 241, 245, 0.08);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.incident-card:hover {
+  border-color: rgba(47, 158, 143, 0.35);
+  transform: translateY(-1px);
+}
+
+.incident-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.incident-card__type {
+  font-weight: 600;
+  color: var(--warm-white);
+}
+
+.incident-card__desc {
+  font-size: 0.9rem;
+  color: var(--fog-white);
+  line-height: 1.4;
+}
+
+.incident-card__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--mist-slate);
+}
+
+.sync-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.sync-badge--synced {
+  background: rgba(47, 158, 143, 0.15);
+  color: var(--signal-teal);
+}
+
+.sync-badge--pending {
+  background: rgba(232, 163, 61, 0.15);
+  color: var(--beacon-amber);
+}
+
+/* ---------- Dashboard tabs ---------- */
+
+.dashboard__tabs {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 300px;
+  margin-bottom: 2rem;
+  background: rgba(11, 22, 38, 0.5);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.dtab {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--mist-slate);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 9px;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.dtab--active {
+  background: var(--signal-teal);
+  color: var(--ink-navy-deep);
+}
+
+.map-hint {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--mist-slate);
+  text-align: center;
+}

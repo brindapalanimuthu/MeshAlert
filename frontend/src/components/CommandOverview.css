@@ -1,0 +1,154 @@
+.command-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  animation: card-rise 0.6s ease-out both;
+}
+
+.command-overview__loading,
+.command-overview__error {
+  color: var(--mist-slate);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.command-overview__error {
+  color: #E88F6F;
+}
+
+/* ---------- Stat cards ---------- */
+
+.command-overview__stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  background: rgba(237, 241, 245, 0.06);
+  border: 1px solid rgba(237, 241, 245, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-card__value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--warm-white);
+}
+
+.stat-card__label {
+  font-size: 0.8rem;
+  color: var(--mist-slate);
+}
+
+/* ---------- Breakdown chips ---------- */
+
+.command-overview__section h3 {
+  font-size: 1rem;
+  color: var(--warm-white);
+  margin-bottom: 0.75rem;
+}
+
+.breakdown-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.severity-chip {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.severity-chip--low { background: rgba(47, 158, 143, 0.15); color: var(--signal-teal); }
+.severity-chip--medium { background: rgba(232, 163, 61, 0.15); color: var(--beacon-amber); }
+.severity-chip--high { background: rgba(232, 143, 111, 0.15); color: #E88F6F; }
+.severity-chip--critical { background: rgba(217, 79, 79, 0.18); color: #D94F4F; }
+
+/* ---------- Lists ---------- */
+
+.command-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .command-overview__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.command-overview__list h3 {
+  font-size: 1rem;
+  color: var(--warm-white);
+  margin-bottom: 0.75rem;
+}
+
+.command-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(237, 241, 245, 0.05);
+  border: 1px solid rgba(237, 241, 245, 0.08);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.command-row strong {
+  color: var(--warm-white);
+  font-size: 0.9rem;
+}
+
+.command-row p {
+  font-size: 0.82rem;
+  color: var(--fog-white);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.status-chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-chip--reported { background: rgba(232, 163, 61, 0.15); color: var(--beacon-amber); }
+.status-chip--acknowledged { background: rgba(124, 144, 168, 0.2); color: var(--mist-slate); }
+.status-chip--in-progress { background: rgba(47, 158, 143, 0.15); color: var(--signal-teal); }
+.status-chip--resolved { background: rgba(47, 158, 143, 0.25); color: var(--signal-teal); }
+.status-chip--available { background: rgba(47, 158, 143, 0.15); color: var(--signal-teal); }
+.status-chip--claimed { background: rgba(232, 163, 61, 0.15); color: var(--beacon-amber); }
+.status-chip--depleted { background: rgba(124, 144, 168, 0.2); color: var(--mist-slate); }
+
+/* ---------- Refresh button ---------- */
+
+.refresh-btn {
+  align-self: flex-start;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid rgba(237, 241, 245, 0.14);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--warm-white);
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.refresh-btn:hover {
+  border-color: var(--signal-teal);
+  background: rgba(47, 158, 143, 0.08);
+}
