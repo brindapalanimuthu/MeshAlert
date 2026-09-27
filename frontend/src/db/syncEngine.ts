@@ -2,13 +2,15 @@ import localDB from './localDB';
 
 const API_BASE = 'http://localhost:5001/api';
 
-function getToken() {
+function getToken(): string | null {
   return localStorage.getItem('meshalert_token');
 }
 
-// Queue a local change to be pushed later (outbox pattern).
-// entityType: 'incident' | 'resource'. operation: 'create' | 'update'.
-export async function queueSync(entityType, entityId, operation) {
+export async function queueSync(
+  entityType: 'incident' | 'resource',
+  entityId: number,
+  operation: 'create' | 'update'
+): Promise<void> {
   await localDB.syncQueue.add({
     entityType,
     entityId,
@@ -17,9 +19,7 @@ export async function queueSync(entityType, entityId, operation) {
   });
 }
 
-// Attempt to push everything in the outbox to the server.
-// Called on network reconnect, on an interval, or manually.
-export async function flushSyncQueue() {
+export async function flushSyncQueue(): Promise<{ pushed: number; failed: number }> {
   const token = getToken();
   if (!token) return { pushed: 0, failed: 0 };
 
@@ -32,8 +32,7 @@ export async function flushSyncQueue() {
       const table = item.entityType === 'incident' ? localDB.incidents : localDB.resources;
       const record = await table.get(item.entityId);
       if (!record) {
-        // Record was deleted locally before it ever synced — just drop the queue entry
-        await localDB.syncQueue.delete(item.id);
+        await localDB.syncQueue.delete(item.id!);
         continue;
       }
 
@@ -49,13 +48,12 @@ export async function flushSyncQueue() {
 
       if (res.ok) {
         await table.update(item.entityId, { synced: 1 });
-        await localDB.syncQueue.delete(item.id);
+        await localDB.syncQueue.delete(item.id!);
         pushed++;
       } else {
         failed++;
       }
-    } catch (err) {
-      // Network still down, or server unreachable — leave in queue, try again later
+    } catch {
       failed++;
     }
   }
@@ -63,8 +61,7 @@ export async function flushSyncQueue() {
   return { pushed, failed };
 }
 
-// Call once when the app starts, to auto-flush whenever connectivity returns.
-export function setupAutoSync() {
+export function setupAutoSync(): void {
   window.addEventListener('online', () => {
     flushSyncQueue();
   });

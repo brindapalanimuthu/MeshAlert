@@ -1,43 +1,77 @@
-:root {
-  --ink-navy: #12213A;
-  --ink-navy-deep: #0B1626;
-  --fog-white: #EDF1F5;
-  --warm-white: #FAF8F4;
-  --beacon-amber: #E8A33D;
-  --signal-teal: #2F9E8F;
-  --mist-slate: #7C90A8;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'leaflet/dist/leaflet.css';
 
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body, #root {
-  height: 100%;
+html {
+  font-family: 'Cormorant Garamond', serif;
 }
 
 body {
-  font-family: var(--font-body);
-  background: var(--ink-navy);
-  color: var(--warm-white);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
-button {
-  font-family: var(--font-body);
-  cursor: pointer;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(91, 112, 128, 0.3);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(91, 112, 128, 0.5);
+}
+
+/* Glass surface utility */
+.glass-surface {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Severity chips — light mode */
+.severity-chip--low { background: rgba(102, 141, 128, 0.16); color: #527669; }
+.severity-chip--medium { background: rgba(210, 179, 107, 0.18); color: #866b35; }
+.severity-chip--high { background: rgba(173, 93, 87, 0.14); color: #914a48; }
+.severity-chip--critical { background: rgba(71, 40, 47, 0.14); color: #47282f; }
+
+/* Status chips — light mode */
+.status-chip--reported { background: rgba(210, 179, 107, 0.18); color: #866b35; }
+.status-chip--acknowledged { background: rgba(135, 155, 162, 0.18); color: #5b7080; }
+.status-chip--in-progress { background: rgba(91, 112, 128, 0.14); color: #3d5363; }
+.status-chip--resolved { background: rgba(102, 141, 128, 0.16); color: #527669; }
+.status-chip--available { background: rgba(102, 141, 128, 0.14); color: #527669; }
+.status-chip--claimed { background: rgba(210, 179, 107, 0.18); color: #866b35; }
+.status-chip--depleted { background: rgba(135, 155, 162, 0.18); color: #5b7080; }
+
+/* Dark mode chip colors */
+.dark .severity-chip--low { color: #9ebfb2; }
+.dark .severity-chip--medium { color: #ffe7a8; }
+.dark .severity-chip--high { color: #dda095; }
+.dark .severity-chip--critical { color: #ecc4ba; }
+.dark .status-chip--reported { color: #ffe7a8; }
+.dark .status-chip--acknowledged { color: #c8d4d9; }
+.dark .status-chip--in-progress { color: #aebfc6; }
+.dark .status-chip--resolved { color: #9ebfb2; }
+.dark .status-chip--available { color: #9ebfb2; }
+.dark .status-chip--claimed { color: #ffe7a8; }
+.dark .status-chip--depleted { color: #c8d4d9; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
