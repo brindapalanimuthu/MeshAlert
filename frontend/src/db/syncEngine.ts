@@ -1,6 +1,6 @@
 import localDB from './localDB';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5001/api';
 
 function getToken(): string | null {
   return localStorage.getItem('meshalert_token');

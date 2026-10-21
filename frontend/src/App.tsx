@@ -22,7 +22,7 @@ import ThemeToggle from '@/components/ThemeToggle';
 import type { Incident, Resource } from '@/db/localDB';
 import type { User, Tab, StatusType } from '@/types';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5001/api';
 
 const TAB_CONFIG: {
   key: Tab;

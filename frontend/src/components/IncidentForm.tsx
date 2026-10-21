@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AlertCircle, MapPin, Loader2, CheckCircle2, Clock } from 'lucide-react';
 import type { StatusType } from '@/types';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5001/api';
 
 const TYPES = ['Medical', 'Trapped', 'Fire', 'Flood', 'Structural Damage', 'Missing Person', 'Other'];
 const SEVERITIES = ['Low', 'Medium', 'High', 'Critical'];

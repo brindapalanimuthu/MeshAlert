@@ -12,8 +12,11 @@ const commandRoutes = require('./routes/command');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5173'].filter(Boolean);
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
+
+app.get('/', (req, res) => res.send('MeshAlert backend'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'meshalert-backend' });
